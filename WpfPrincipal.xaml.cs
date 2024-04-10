@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -35,7 +34,6 @@ namespace SistCamerasGuarita
         {
             InitializeComponent();
             DefineAmbiente();
-            LocalCam();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -102,31 +100,6 @@ namespace SistCamerasGuarita
             else
             {
                 ConexaoConfig.AbrirConexao("DbProd");
-            }
-        }
-
-        private void LocalCam()
-        {
-            // Obtém o nome do host da máquina local
-            string hostName = Dns.GetHostName();
-
-            // Resolve o nome do host em um endereço IP
-            IPAddress[] addresses = Dns.GetHostAddresses(hostName);
-
-            // Verifica se algum dos endereços IP corresponde ao IP desejado
-            foreach (IPAddress address in addresses)
-            {
-                if (IPAddress.Parse("192.168.78.6").Equals(address))
-                {
-                    InfoGlobal.Usuario = "MARCIO ANTONIO LEVORATO";
-                    InfoGlobal.IdUser = 105;
-                    InfoGlobal.CasaCam = true;
-                    InfoGlobal.Autenticacao = true;
-
-                    lblUserAmbiente.Header = InfoGlobal.Usuario + " - " + InfoGlobal.Ambiente;
-                    lblMenuLogin.Visibility = Visibility.Hidden;
-                    btnConfig.Visibility = Visibility.Visible;
-                }
             }
         }
 

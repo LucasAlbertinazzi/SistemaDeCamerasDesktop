@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -10,7 +8,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Sistema de Câmeras")]
 [assembly: AssemblyDescription("Sistema de câmeras desenvolvido unicamente para o uso na portaria (guarita).")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Marciu's Magazine")]
+[assembly: AssemblyCompany("Empresa")]
 [assembly: AssemblyProduct("SistCamerasGuarita")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]

@@ -10,7 +10,6 @@ namespace SistCamerasGuarita
         private Timer timer;
         private bool isConnected = true;
         private bool avisoOpen = false;
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -36,7 +35,7 @@ namespace SistCamerasGuarita
             {
                 try
                 {
-                    PingReply reply = ping.Send("192.168.10.1");
+                    PingReply reply = ping.Send("192.168.1.1");
 
                     if (reply.Status == IPStatus.Success)
                     {
