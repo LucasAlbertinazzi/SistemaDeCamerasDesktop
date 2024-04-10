@@ -1,0 +1,88 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.Interface.WpfExcluiCamera"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SistCamerasGuarita.Interface"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Excluir Câmeras"
+    Width="1080"
+    Height="720"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <!--  Linha 0 /////////////////////////////////////////////////////////////  -->
+
+        <TextBox
+            x:Name="txbPesquisaCamera"
+            Height="40"
+            Style="{StaticResource Estilo_Placeholder_White}"
+            Tag="Digite o nome da Câmera/ IP/ Marca..."
+            TextChanged="txbPesquisaCamera_TextChanged" />
+
+        <!--  Linha 2 /////////////////////////////////////////////////////////////  -->
+        <DataGrid
+            Name="dgCameras"
+            Grid.Row="1"
+            Padding="5"
+            BorderBrush="#333"
+            BorderThickness="1"
+            GridLinesVisibility="Horizontal"
+            IsReadOnly="True"
+            MouseDoubleClick="dgCameras_MouseDoubleClick"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            Style="{StaticResource dgRedondo}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="120"
+                    Binding="{Binding Marca}"
+                    Header="Marca" />
+                <DataGridTextColumn
+                    Width="280"
+                    Binding="{Binding Camera}"
+                    Header="Câmera" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Monitor}"
+                    Header="Monitor" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Posicao}"
+                    Header="Posição" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Ip}"
+                    Header="Ip" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Porta}"
+                    Header="Porta" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Status}"
+                    Header="Status" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--  Linha 3 /////////////////////////////////////////////////////////////  -->
+        <Button
+            x:Name="btnExcluir"
+            Grid.Row="3"
+            Grid.Column="1"
+            Height="40"
+            Click="btnExcluir_Click"
+            Content="Excluir"
+            Style="{StaticResource BtnChamadoRed}" />
+    </Grid>
+</Window>

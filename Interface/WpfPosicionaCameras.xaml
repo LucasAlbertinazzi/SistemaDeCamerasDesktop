@@ -1,0 +1,150 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.Interface.WpfPosicionaCameras"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SistCamerasGuarita.Interface"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Posicionar Câmeras"
+    Width="720"
+    Height="480"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="260" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <!--  Linha 0 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Label Content="Monitor :" Style="{StaticResource labelWhite}" />
+                <ComboBox
+                    x:Name="cmbMonitor"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    SelectionChanged="cmbMonitor_SelectionChanged"
+                    Style="{StaticResource ComboBoxNoBorder}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Cameras :" Style="{StaticResource labelWhite}" />
+                <ComboBox
+                    x:Name="cmbCameras"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    DisplayMemberPath="CameraCombo"
+                    SelectedIndex="0"
+                    SelectedValuePath="Id"
+                    SelectionChanged="cmbCameras_SelectionChanged"
+                    Style="{StaticResource ComboBoxNoBorder}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Label Content="Editar :" Style="{StaticResource labelWhite}" />
+                <Button
+                    x:Name="btnEditLinhasColunas"
+                    Height="40"
+                    Click="btnEditLinhasColunas_Click"
+                    Content="Linhas/ Colunas"
+                    Style="{StaticResource BtnChamadoYellow}" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Linha 1 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Pré-Visualização:" Style="{StaticResource labelWhite}" />
+                <Border
+                    Width="320"
+                    Height="230"
+                    HorizontalAlignment="Left"
+                    Background="Transparent"
+                    BorderBrush="White"
+                    BorderThickness="1">
+                    <WindowsFormsHost x:Name="previewBox" />
+                </Border>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Linhas:"
+                            Style="{StaticResource labelWhite}" />
+                        <ComboBox
+                            x:Name="cmbLinha"
+                            Width="110"
+                            Height="40"
+                            Margin="0,0,5,0"
+                            Style="{StaticResource ComboBoxNoBorder}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Colunas:"
+                            Style="{StaticResource labelWhite}" />
+                        <ComboBox
+                            x:Name="cmbColuna"
+                            Width="110"
+                            Height="40"
+                            Margin="0,0,5,0"
+                            Style="{StaticResource ComboBoxNoBorder}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label
+                            VerticalAlignment="Center"
+                            Content="Posição:"
+                            Style="{StaticResource labelWhite}" />
+                        <ComboBox
+                            x:Name="cmbPosicao"
+                            Width="106"
+                            Height="40"
+                            Style="{StaticResource ComboBoxNoBorder}" />
+                    </StackPanel>
+
+                </StackPanel>
+                <Grid
+                    x:Name="gridNumbers"
+                    Grid.Column="1"
+                    Width="340"
+                    Height="180"
+                    Background="White" />
+            </StackPanel>
+
+
+        </Grid>
+
+        <!--  Linha 2 /////////////////////////////////////////////////////////////  -->
+
+        <Button
+            x:Name="btnSalvaPosicao"
+            Grid.Row="2"
+            Height="40"
+            Margin="0,0,5,0"
+            Click="btnSalvaPosicao_Click"
+            Content="Salvar Posição"
+            Style="{StaticResource BtnChamadoYellow}" />
+
+    </Grid>
+</Window>

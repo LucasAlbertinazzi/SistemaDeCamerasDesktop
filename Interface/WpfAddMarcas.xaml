@@ -1,0 +1,66 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.Interface.WpfAddMarcas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SistCamerasGuarita.Interface"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Adiciona Marcas"
+    Width="720"
+    Height="380"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <!--  Linha 0 /////////////////////////////////////////////////////////////  -->
+
+        <TextBox
+            x:Name="txbMarcaCamera"
+            Height="40"
+            Style="{StaticResource Estilo_Placeholder_White}"
+            Tag="Digite a marca da Câmera..." />
+
+        <!--  Linha 2 /////////////////////////////////////////////////////////////  -->
+        <DataGrid
+            Name="dgMarcas"
+            Grid.Row="1"
+            Padding="5"
+            BorderBrush="#333"
+            BorderThickness="1"
+            GridLinesVisibility="Horizontal"
+            IsReadOnly="True"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            Style="{StaticResource dgRedondo}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="120"
+                    Binding="{Binding IdMarca}"
+                    Header="Id Marca" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Marca}"
+                    Header="Marca" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--  Linha 3 /////////////////////////////////////////////////////////////  -->
+        <Button
+            x:Name="btnAddMarca"
+            Grid.Row="3"
+            Grid.Column="1"
+            Height="40"
+            Click="btnAddMarca_Click"
+            Content="Adicionar"
+            Style="{StaticResource BtnChamadoYellow}" />
+    </Grid>
+</Window>

@@ -1,0 +1,48 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.Interface.WpfAutenticacao"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SistCamerasGuarita.Interface"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Autenticação"
+    Width="440"
+    Height="300"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Label Content="Usuário" Style="{StaticResource labelWhite}" />
+            <TextBox
+                x:Name="txbUsuario"
+                Height="40"
+                HorizontalContentAlignment="Center"
+                Style="{StaticResource TextBoxPadrao}"
+                TabIndex="0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Label Content="Senha" Style="{StaticResource labelWhite}" />
+            <TextBox
+                x:Name="txbSenha"
+                Height="40"
+                HorizontalContentAlignment="Center"
+                Style="{StaticResource TextBoxPadrao}"
+                TabIndex="1" />
+        </StackPanel>
+        <Button
+            x:Name="btnEntrar"
+            Grid.Row="2"
+            Width="120"
+            Height="40"
+            Click="btnEntrar_Click"
+            Content="Entrar"
+            Style="{StaticResource BtnPadrao}" />
+    </Grid>
+</Window>

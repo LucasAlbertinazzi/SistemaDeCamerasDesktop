@@ -1,0 +1,139 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.Interface.WpfAddCameras"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SistCamerasGuarita.Interface"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Adicionar Câmeras"
+    Width="720"
+    Height="380"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <!--  Linha 0 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Marca:" Style="{StaticResource labelWhite}" />
+                <ComboBox
+                    x:Name="cmbMarcaCameras"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    DisplayMemberPath="Marca"
+                    SelectedIndex="0"
+                    SelectionChanged="cmbMarcaCameras_SelectionChanged"
+                    SelectedValuePath="IdMarca"
+                    Style="{StaticResource ComboBoxNoBorder}"
+                    TabIndex="0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Camera:" Style="{StaticResource labelWhite}" />
+                <TextBox
+                    x:Name="txbNomeCamera"
+                    Height="40"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource TextBoxPadrao}"
+                    TabIndex="1" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Linha 1 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="IP:" Style="{StaticResource labelWhite}" />
+                <TextBox
+                    x:Name="txbIp"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    Style="{StaticResource TextBoxPadrao}"
+                    TabIndex="2" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Porta:" Style="{StaticResource labelWhite}" />
+                <TextBox
+                    x:Name="txbPorta"
+                    Height="40"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource TextBoxPadrao}"
+                    TabIndex="3" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Linha 2 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Vertical">
+                <Label Content="Usuário:" Style="{StaticResource labelWhite}" />
+                <TextBox
+                    x:Name="txbUser"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    Style="{StaticResource TextBoxPadrao}"
+                    TabIndex="4" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Senha:" Style="{StaticResource labelWhite}" />
+                <TextBox
+                    x:Name="txbSenha"
+                    Height="40"
+                    Margin="5,0,0,0"
+                    Style="{StaticResource TextBoxPadrao}"
+                    TabIndex="5" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Linha 3 /////////////////////////////////////////////////////////////  -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                x:Name="btnTesteConexao"
+                Grid.Column="0"
+                Height="40"
+                Margin="0,0,5,0"
+                Click="btnTesteConexao_Click"
+                Content="Testar conexão"
+                Style="{StaticResource BtnChamadoYellow}" />
+            <Button
+                x:Name="btnAddCamera"
+                Grid.Column="1"
+                Height="40"
+                Margin="5,0,0,0"
+                Click="btnAddCamera_Click"
+                Content="Salvar IP"
+                Style="{StaticResource BtnChamadoGreen}" />
+        </Grid>
+
+    </Grid>
+</Window>

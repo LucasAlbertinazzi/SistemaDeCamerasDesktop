@@ -1,0 +1,53 @@
+﻿<Window
+    x:Class="SistCamerasGuarita.WpfPrincipal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Sistema de Câmeras"
+    Closing="Window_Closing"
+    Loaded="Window_Loaded"
+    Style="{StaticResource PropriedadesTela}"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized">
+    <Grid>
+        <Menu Height="30" VerticalAlignment="Top">
+            <MenuItem
+                x:Name="lblMenuLogin"
+                Height="35"
+                VerticalAlignment="Center"
+                Click="lblMenuLogin_Click"
+                FontFamily="Roboto"
+                FontSize="16"
+                FontWeight="Medium" />
+
+            <MenuItem
+                x:Name="btnConfig"
+                Height="35"
+                VerticalAlignment="Center"
+                FontFamily="Roboto"
+                FontSize="16"
+                FontWeight="Medium"
+                Header="Configuração">
+                <MenuItem Click="AdicionarCamera_Click" Header="Adicionar Câmeras" />
+                <MenuItem Click="PosicionarCamera_Click" Header="Posicionar Câmeras" />
+                <MenuItem Click="AdicionarMarca_Click" Header="Adicionar Marcas" />
+                <MenuItem Click="ExcluirCamera_Click" Header="Excluir/ Desativar Câmeras" />
+            </MenuItem>
+
+            <MenuItem
+                x:Name="lblUserAmbiente"
+                Height="35"
+                VerticalAlignment="Center"
+                FontFamily="Roboto"
+                FontSize="16"
+                FontWeight="Medium"
+                Header=""
+                IsEnabled="True" />
+        </Menu>
+
+        <Grid
+            x:Name="gridCameras"
+            Margin="0,30,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
+    </Grid>
+</Window>
