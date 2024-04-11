@@ -148,12 +148,10 @@ namespace SistCamerasGuarita.Interface
 
         private void CarregaCameras()
         {
-            string sql = $"SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = $"SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0 AND casacam = 'true'";
-            }
+            string sql = $"SELECT * FROM tbl_cameras_cd " +
+                         $"WHERE ativo = 'true' " +
+                         $"AND userexclui = 0 " +
+                         $"AND casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
@@ -208,12 +206,9 @@ namespace SistCamerasGuarita.Interface
             {
                 CamerasInfos camSelecionada = (CamerasInfos)cmbCameras.SelectedItem;
 
-                string sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE idlayout = {camSelecionada.IdLayout}";
-
-                if (InfoGlobal.CasaCam)
-                {
-                    sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE idlayout = {camSelecionada.IdLayout} AND casacam = 'true'";
-                }
+                string sql = $"SELECT * FROM tbl_cameras_cd_layout " +
+                             $"WHERE idlayout = {camSelecionada.IdLayout} " +
+                             $"AND casacam = '{InfoGlobal.CasaCam}'";
 
                 DataTable dt = obj.RetornaTabela(sql);
 
@@ -268,12 +263,7 @@ namespace SistCamerasGuarita.Interface
 
         private void CarregaLayoutMonitor()
         {
-            string sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE idlayout = {cmbMonitor.SelectedIndex + 1}";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE idlayout = {cmbMonitor.SelectedIndex + 1} AND casacam = 'true'";
-            }
+            string sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE idlayout = {cmbMonitor.SelectedIndex + 1} AND casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
@@ -371,12 +361,7 @@ namespace SistCamerasGuarita.Interface
 
         private int VerificaLayout(int monitor)
         {
-            string sql = $"SELECT idlayout FROM tbl_cameras_cd_layout WHERE monitor = {monitor}";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = $"SELECT idlayout FROM tbl_cameras_cd_layout WHERE monitor = {monitor} AND casacam = 'true'";
-            }
+            string sql = $"SELECT idlayout FROM tbl_cameras_cd_layout WHERE monitor = {monitor} AND casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
@@ -526,40 +511,22 @@ namespace SistCamerasGuarita.Interface
 
                 if (VerificaLayout(monitorSelecionado) == 0)
                 {
-                    sql = $"INSERT INTO tbl_cameras_cd_layout (linhas,colunas,monitor,usercadastra,datacadastra) " +
-                          $"VALUES ({linhaSelecionada},{colunaSelecionada},{monitorSelecionado},{InfoGlobal.IdUser},'{DateTime.Now}') " +
-                          $"RETURNING idlayout";
 
-                    if (InfoGlobal.CasaCam)
-                    {
-                        sql = $"INSERT INTO tbl_cameras_cd_layout (linhas,colunas,monitor,usercadastra,datacadastra, casacam) " +
-                          $"VALUES ({linhaSelecionada},{colunaSelecionada},{monitorSelecionado},{InfoGlobal.IdUser},'{DateTime.Now}','true') " +
-                          $"RETURNING idlayout";
-                    }
+                    sql = $"INSERT INTO tbl_cameras_cd_layout (linhas,colunas,monitor,usercadastra,datacadastra, casacam) " +
+                      $"VALUES ({linhaSelecionada},{colunaSelecionada},{monitorSelecionado},{InfoGlobal.IdUser},'{DateTime.Now}','{InfoGlobal.CasaCam}') " +
+                      $"RETURNING idlayout";
                 }
                 else
                 {
                     sql = $"UPDATE tbl_cameras_cd_layout " +
-                          $"SET " +
-                          $"linhas = {linhaSelecionada}, " +
-                          $"colunas = {colunaSelecionada}, " +
-                          $"useratualiza = {InfoGlobal.IdUser}, " +
-                          $"dataatualiza = '{DateTime.Now}' " +
-                          $"WHERE monitor = {monitorSelecionado} " +
-                          $"RETURNING idlayout";
-
-                    if (InfoGlobal.CasaCam)
-                    {
-                        sql = $"UPDATE tbl_cameras_cd_layout " +
-                         $"SET " +
-                         $"linhas = {linhaSelecionada}, " +
-                         $"colunas = {colunaSelecionada}, " +
-                         $"useratualiza = {InfoGlobal.IdUser}, " +
-                         $"dataatualiza = '{DateTime.Now}' " +
-                         $"WHERE monitor = {monitorSelecionado} " +
-                         $"AND casacam = 'true' " +
-                         $"RETURNING idlayout";
-                    }
+                     $"SET " +
+                     $"linhas = {linhaSelecionada}, " +
+                     $"colunas = {colunaSelecionada}, " +
+                     $"useratualiza = {InfoGlobal.IdUser}, " +
+                     $"dataatualiza = '{DateTime.Now}' " +
+                     $"WHERE monitor = {monitorSelecionado} " +
+                     $"AND casacam = '{InfoGlobal.CasaCam}' " +
+                     $"RETURNING idlayout";
                 }
 
                 string result = obj.ComandoRetornaValor(sql);

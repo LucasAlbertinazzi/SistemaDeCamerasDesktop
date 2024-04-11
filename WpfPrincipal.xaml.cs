@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -33,14 +34,15 @@ namespace SistCamerasGuarita
         public WpfPrincipal()
         {
             InitializeComponent();
-            DefineAmbiente();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
+            DefineAmbiente();
             DefineAutenticacao();
+            LocalCam();
             CarregaCameras();
         }
 
@@ -95,11 +97,43 @@ namespace SistCamerasGuarita
         {
             if (Debugger.IsAttached)
             {
-                ConexaoConfig.AbrirConexao("DbDev");
+                string[] op = { "Produção", "Desenvolvimento" };
+
+                NewMessageBox.Opcoes("Deseja usar qual ambiente?", op, 3);
+
+                if (NewMessageBox.Opcao == 1)
+                {
+                    InfoGlobal.Ambiente = "Produção";
+                    ConexaoConfig.AbrirConexao("DbProd");
+                }
+                else
+                {
+                    InfoGlobal.Ambiente = "Desenvolvimento";
+                    ConexaoConfig.AbrirConexao("DbDev");
+                }
             }
             else
             {
+                InfoGlobal.Ambiente = "Produção";
                 ConexaoConfig.AbrirConexao("DbProd");
+            }
+        }
+
+        private void LocalCam()
+        {
+            // Obtém o nome do host da máquina local
+            string hostName = Dns.GetHostName();
+
+            // Resolve o nome do host em um endereço IP
+            IPAddress[] addresses = Dns.GetHostAddresses(hostName);
+
+            // Verifica se algum dos endereços IP corresponde ao IP desejado
+            foreach (IPAddress address in addresses)
+            {
+                if (IPAddress.Parse("192.168.78.6").Equals(address))
+                {
+                    InfoGlobal.CasaCam = true;
+                }
             }
         }
 
@@ -403,11 +437,18 @@ namespace SistCamerasGuarita
 
         private void DefineAutenticacao()
         {
+            btnAdmCasa.Visibility = Visibility.Collapsed;
+
             if (InfoGlobal.Autenticacao)
             {
                 lblUserAmbiente.Header = InfoGlobal.Usuario + " - " + InfoGlobal.Ambiente;
                 lblMenuLogin.Header = "Sair";
                 btnConfig.Visibility = Visibility.Visible;
+
+                if (InfoGlobal.CodDep == 1)
+                {
+                    btnAdmCasa.Visibility = Visibility.Visible;
+                }
             }
             else
             {
@@ -467,7 +508,6 @@ namespace SistCamerasGuarita
         {
             if (InfoGlobal.Autenticacao)
             {
-                ConexaoConfig.FecharConexao(ConexaoConfig.conn);
                 ResetaInfosUser();
             }
             else
@@ -476,6 +516,24 @@ namespace SistCamerasGuarita
             }
 
             DefineAutenticacao();
+        }
+
+        private void AdmCasa_Click(object sender, RoutedEventArgs e)
+        {
+            if (InfoGlobal.Admin)
+            {
+                NewMessageBox.Infos("A partir de agora, todas as configurações estão relacionadas ao Sistema de Câmeras do CD.", 2);
+                InfoGlobal.CasaCam = false;
+                InfoGlobal.Admin = false;
+                CarregaCameras();
+            }
+            else
+            {
+                NewMessageBox.Infos("A partir de agora, todas as configurações estão relacionadas ao Sistema de Câmeras da casa do Marcio", 2);
+                InfoGlobal.CasaCam = true;
+                InfoGlobal.Admin = true;
+                CarregaCameras();
+            }
         }
         #endregion
     }

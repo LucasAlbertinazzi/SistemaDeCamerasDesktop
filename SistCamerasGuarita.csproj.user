@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>\\192.168.1.1\fileserver\|\\192.168.10.14\fileserver\|\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>\\192.168.1.1\fileserver\|\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\</InstallUrlHistory>
+    <PublishUrlHistory>\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory>\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\</UpdateUrlHistory>
-    <BootstrapperUrlHistory>\\192.168.1.1\fileserver\|\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\Plugins|\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\Microsoft</BootstrapperUrlHistory>
+    <BootstrapperUrlHistory>\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\Plugins|\\192.168.10.14\fileserver\MATRIZ\SISTEMA_LOJAS\SistemaCameras\Microsoft</BootstrapperUrlHistory>
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>

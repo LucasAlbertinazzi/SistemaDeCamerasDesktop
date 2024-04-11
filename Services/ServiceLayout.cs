@@ -8,15 +8,15 @@ namespace SistCamerasGuarita.Services
 {
     public class ServiceLayout
     {
+        #region 1 - VÁRIAVEIS
         DAL obj = new DAL();
+        #endregion
+
+        #region 2 - MÉTODOS
+
         public List<CamerasLayout> CarregaLayout()
         {
-            string sql = $"SELECT * FROM tbl_cameras_cd_layout";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = $"SELECT * FROM tbl_cameras_cd_layout AND casacam = 'true'";
-            }
+            string sql = $"SELECT * FROM tbl_cameras_cd_layout WHERE casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
@@ -42,5 +42,6 @@ namespace SistCamerasGuarita.Services
 
             return listLayout;
         }
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace SistCamerasGuarita.Services
             CHCNetSDK.NET_DVR_DEVICEINFO_V30 DeviceInfo = new CHCNetSDK.NET_DVR_DEVICEINFO_V30();
             m_lUserID = CHCNetSDK.NET_DVR_Login_V30(ip, porta, user, senha, ref DeviceInfo);
 
-            if(m_lUserID < 0)
+            if (m_lUserID < 0)
             {
                 return false;
             }
@@ -112,16 +112,16 @@ namespace SistCamerasGuarita.Services
 
         public DataTable HikvisionCarregaCameras()
         {
-            string sql = "SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0 AND idmarca = 1 AND posicao > 0";
+            string sql = $"SELECT * FROM tbl_cameras_cd " +
+                         $"WHERE ativo = 'true' " +
+                         $"AND userexclui = 0 " +
+                         $"AND idmarca = 1 " +
+                         $"AND posicao > 0 " +
+                         $"AND casacam = '{InfoGlobal.CasaCam}'";
 
-            if (InfoGlobal.CasaCam)
-            {
-                sql = "SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0 AND idmarca = 1 AND posicao > 0 AND casacam = 'true'";
-            }
-            
             DataTable dt = obj.RetornaTabela(sql);
-            
-            if(dt.Rows.Count > 0)
+
+            if (dt.Rows.Count > 0)
             {
                 return dt;
             }

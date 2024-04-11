@@ -26,11 +26,16 @@
                 FontFamily="Roboto"
                 FontSize="16"
                 FontWeight="Medium"
-                Header="Configuração">
+                Header="Configuração"
+                Visibility="Hidden">
                 <MenuItem Click="AdicionarCamera_Click" Header="Adicionar Câmeras" />
                 <MenuItem Click="PosicionarCamera_Click" Header="Posicionar Câmeras" />
                 <MenuItem Click="AdicionarMarca_Click" Header="Adicionar Marcas" />
                 <MenuItem Click="ExcluirCamera_Click" Header="Excluir/ Desativar Câmeras" />
+                <MenuItem
+                    x:Name="btnAdmCasa"
+                    Click="AdmCasa_Click"
+                    Header="Admin.Casa" />
             </MenuItem>
 
             <MenuItem

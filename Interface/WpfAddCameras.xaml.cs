@@ -162,7 +162,7 @@ namespace SistCamerasGuarita.Interface
         {
             if (VerificaCampos())
             {
-                if (camerasInfos.Id == 1)
+                if (camerasInfos.IdMarca == 1)
                 {
                     if (serviceHikvision.HikvisionAutenticacao(camerasInfos.Ip, camerasInfos.Porta, camerasInfos.UserCamera, camerasInfos.SenhaCamera))
                     {
@@ -180,10 +180,8 @@ namespace SistCamerasGuarita.Interface
         {
             if (VerificaCampos())
             {
-                if (camerasInfos.Id == 1)
+                if (camerasInfos.IdMarca == 1)
                 {
-                    camerasInfos.IdMarca = 1;
-
                     if (serviceHikvision.HikvisionAutenticacao(camerasInfos.Ip, camerasInfos.Porta, camerasInfos.UserCamera, camerasInfos.SenhaCamera))
                     {
                         SalvaCameras();
@@ -200,8 +198,6 @@ namespace SistCamerasGuarita.Interface
                 }
                 else
                 {
-                    camerasInfos.IdMarca = 2;
-
                     SalvaCameras();
                 }
             }

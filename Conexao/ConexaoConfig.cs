@@ -1,11 +1,6 @@
-﻿using System;
+﻿using Npgsql;
 using System.Configuration;
 using System.Data;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Npgsql;
-using SistCamerasGuarita.Classes;
 
 namespace SistCamerasGuarita.Conexao
 {
@@ -16,10 +11,7 @@ namespace SistCamerasGuarita.Conexao
 
         public static string ObterStringConexao(string nomeConexao)
         {
-            //ConfigEncryptor.Descriptografar();
             string conexaoBanco = ConfigurationManager.ConnectionStrings[nomeConexao].ConnectionString;
-            //ConfigEncryptor.Criptografar();
-
             return conexaoBanco;
         }
 

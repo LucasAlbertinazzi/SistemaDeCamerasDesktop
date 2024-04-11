@@ -8,15 +8,20 @@ namespace SistCamerasGuarita.Services
 {
     public class ServiceBrickcom
     {
+        #region 1 - VÁRIAVEIS
         DAL obj = new DAL();
+        #endregion
+
+        #region 2 - MÉTODOS
+
         private DataTable BrickcomCarregaCameras()
         {
-            string sql = "SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0 AND idmarca = 2 AND posicao > 0";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = "SELECT * FROM tbl_cameras_cd WHERE ativo = 'true' AND userexclui = 0 AND idmarca = 2 AND posicao > 0 AND casacam = 'true'";
-            }
+            string sql = $"SELECT * FROM tbl_cameras_cd " +
+                         $"WHERE ativo = 'true' " +
+                         $"AND userexclui = 0 " +
+                         $"AND idmarca = 2 " +
+                         $"AND posicao > 0 " +
+                         $"AND casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
@@ -65,5 +70,7 @@ namespace SistCamerasGuarita.Services
 
             return new List<CamerasInfos>();
         }
+
+        #endregion
     }
 }

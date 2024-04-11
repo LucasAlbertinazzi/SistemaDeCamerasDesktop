@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistCamerasGuarita.Conexao
@@ -51,19 +46,26 @@ namespace SistCamerasGuarita.Conexao
         private DataTable ExecutaRetornoTabela(string sqlx, bool comandoComParametros = false)
         {
             Cursor.Current = Cursors.WaitCursor;
-            DataTable dttabela;
+            DataTable dttabela = new DataTable();
+
             try
             {
                 _conn.IgnorarParametrosNoProximoComando = !comandoComParametros;
                 dttabela = _conn.SelecionaDataTable(sqlx);
             }
-            catch
+            catch (Exception ex)
             {
-                dttabela = new DataTable();
+                // Aqui você pode lidar com a exceção de forma apropriada, como registrar o erro ou lançar uma exceção personalizada
+                Console.WriteLine("Erro ao executar SQL: " + ex.Message);
             }
-            Cursor.Current = Cursors.Default;
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+
             return dttabela;
         }
+
 
         private int ExecutaComandoSql(string sql, bool comandoComParametros = false)
         {

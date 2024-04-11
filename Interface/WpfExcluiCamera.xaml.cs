@@ -38,19 +38,8 @@ namespace SistCamerasGuarita.Interface
                          $"END AS status " +
                          $"FROM tbl_cameras_cd AS c " +
                          $"LEFT JOIN tbl_cameras_cd_marcas AS m ON c.idmarca = m.idmarca " +
-                         $"WHERE c.userexclui = 0";
-
-            if (InfoGlobal.CasaCam)
-            {
-                sql = $"SELECT c.*, m.marca, " +
-                         $"CASE WHEN c.ativo = 'true' THEN 'Ativo' " +
-                         $"ELSE 'Desativado' " +
-                         $"END AS status " +
-                         $"FROM tbl_cameras_cd AS c " +
-                         $"LEFT JOIN tbl_cameras_cd_marcas AS m ON c.idmarca = m.idmarca " +
                          $"WHERE c.userexclui = 0 " +
-                         $"AND casacam = 'true'";
-            }
+                         $"AND casacam = '{InfoGlobal.CasaCam}'";
 
             DataTable dt = obj.RetornaTabela(sql);
 
